@@ -30,7 +30,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: MyWebAppNew
+          name: MyWebApp
           path: '${{ github.workspace }}'
 
   deploy:
@@ -41,16 +41,17 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: MyWebAppNew
+          name: MyWebApp
       
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'MyWebAppNew'
+          app-name: 'MyWebApp'
           slot-name: 'Production'
           package: '*.war'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_66515F4D338440F8B17C984A0D51C3F9 }}
+
 
 
 
